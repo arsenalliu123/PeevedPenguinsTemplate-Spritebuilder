@@ -43,8 +43,9 @@
     
     self.position = ccp(0,0);
     CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox];
+    CCActionFollow *follow2 = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox];
     [self runAction:follow];
-    [_retrybutton runAction:follow];
+    [_retrybutton runAction:follow2];
 }
 
 - (void)retry{

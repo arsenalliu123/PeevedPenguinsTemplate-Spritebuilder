@@ -32,7 +32,9 @@
 // called on every touch in this scene
 - (void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
     CGPoint touchLocation = [touch locationInNode:_contentNode];
+    
     if (CGRectContainsPoint([_catapultArm boundingBox], touchLocation)) {
+        //only triger when touch inside arm happens
         _mouseJointNode.position = touchLocation;
         _mouseJoint = [CCPhysicsJoint connectedSpringJointWithBodyA:_mouseJointNode.physicsBody bodyB:_catapultArm.physicsBody anchorA:ccp(0, 0) anchorB:ccp(34,138) restLength:0.f stiffness:3000 damping:150.f];
     }
@@ -45,6 +47,12 @@
         [_mouseJoint invalidate];
         _mouseJoint = nil;
     }
+}
+
+-(void) touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event
+{
+    CGPoint touchLocation = [touch locationInNode:_contentNode];
+    _mouseJointNode.position = touchLocation;
 }
 
 -(void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event

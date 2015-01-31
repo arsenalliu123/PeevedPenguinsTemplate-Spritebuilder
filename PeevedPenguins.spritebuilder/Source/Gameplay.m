@@ -12,6 +12,7 @@
     CCPhysicsNode *_physicsNode;
     CCNode *_catapultArm;
     CCNode *_levelNode;
+    CCButton *_retrybutton;
 }
 // is called when CCB file has completed loading
 - (void)didLoadFromCCB {
@@ -43,6 +44,7 @@
     self.position = ccp(0,0);
     CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox];
     [self runAction:follow];
+    [_retrybutton runAction:follow];
 }
 
 - (void)retry{

@@ -22,7 +22,7 @@
     CCScene *level = [CCBReader loadAsScene:@"Levels/Level1"];
     [_levelNode addChild:level];
     _physicsNode.debugDraw = true;
-    _pullbackNode.physicsBody.collisionMask = @[];1
+    _pullbackNode.physicsBody.collisionMask = @[];
 }
 
 // called on every touch in this scene

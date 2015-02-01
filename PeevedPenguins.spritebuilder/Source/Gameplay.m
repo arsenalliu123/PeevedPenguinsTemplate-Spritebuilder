@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Apportable. All rights reserved.
 //
 
+#import "CCPhysics+ObjectiveChipmunk.h"
 #import "Gameplay.h"
 
 @implementation Gameplay {
@@ -28,7 +29,23 @@
     _physicsNode.debugDraw = true;
     _pullbackNode.physicsBody.collisionMask = @[];
     _mouseJointNode.physicsBody.collisionMask = @[];
+    _physicsNode.collisionDelegate = self;
+}
 
+- (void)sealRemoved:(CCNode *)seal {
+    [seal removeFromParent];
+}
+
+-(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair seal:(CCNode *)nodeA wildcard:(CCNode *)nodeB
+{
+    float energy = [pair totalKineticEnergy];
+    
+    // if energy is large enough, remove the seal
+    if (energy > 5000.f) {
+        [[_physicsNode space] addPostStepBlock:^{
+            [self sealRemoved:nodeA];
+        } key:nodeA];
+    }
 }
 
 // called on every touch in this scene

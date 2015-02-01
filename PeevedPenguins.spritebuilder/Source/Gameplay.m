@@ -26,13 +26,17 @@
     self.userInteractionEnabled = TRUE;
     CCScene *level = [CCBReader loadAsScene:@"Levels/Level1"];
     [_levelNode addChild:level];
-    _physicsNode.debugDraw = true;
+    //_physicsNode.debugDraw = true;
     _pullbackNode.physicsBody.collisionMask = @[];
     _mouseJointNode.physicsBody.collisionMask = @[];
     _physicsNode.collisionDelegate = self;
 }
 
 - (void)sealRemoved:(CCNode *)seal {
+    CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"SealExplosion"];
+    explosion.autoRemoveOnFinish = TRUE;
+    explosion.position = seal.position;
+    [seal.parent addChild:explosion];
     [seal removeFromParent];
 }
 

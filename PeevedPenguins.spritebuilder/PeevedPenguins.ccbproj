@@ -80,8 +80,6 @@
 		</dict>
 		<key>Magician</key>
 		<dict>
-			<key>isDirty</key>
-			<true/>
 			<key>isSmartSpriteSheet</key>
 			<true/>
 		</dict>
@@ -92,6 +90,13 @@
 		</dict>
 		<key>Sprites</key>
 		<dict/>
+		<key>animation</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>isSmartSpriteSheet</key>
+			<true/>
+		</dict>
 		<key>ccbResources</key>
 		<dict>
 			<key>previewFolderHidden</key>
